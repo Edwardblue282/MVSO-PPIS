@@ -17,6 +17,7 @@ def normalize_tensor(mx, eqvar=None):
         mx = torch.mm(r_mat_inv, mx)
         return mx
 
+
     else:
         r_inv = torch.pow(rowsum, -1).flatten()
         r_inv[torch.isinf(r_inv)] = 0.0

@@ -322,7 +322,8 @@ class MVSOPPIS(nn.Module):
                                   dropout=dropout, lamda=lamda, alpha=alpha, variant=VARIANT)
         self.subgraph = Subgraphnet(ks=[0.7], in_dim=INPUT_DIM, dim=nhidden, alpha=alpha, lamda=lamda, act=F.hardtanh, drop_p=dropout)
         # self.subgraph = Subgraphnet(ks=[0.7], in_dim=INPUT_DIM, dim=nhidden, alpha=alpha, lamda=lamda, act=F.hardtanh, drop_p=dropout)
-        
+
+
         self.act_fn = nn.ReLU()
         self.fcs = nn.ModuleList()
         # self.fcs.append(nn.Linear(1536, 512))

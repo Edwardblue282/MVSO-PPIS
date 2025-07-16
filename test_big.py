@@ -216,6 +216,7 @@ def test(test_dataframe, psepos_path):
 
         epoch_loss_test_avg, test_true, test_pred, pred_dict = evaluate(model, test_loader)
 
+
         result_test = analysis(test_true, test_pred)
 
         print("========== Evaluate Test set ==========")

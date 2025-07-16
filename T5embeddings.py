@@ -17,6 +17,7 @@ def generate_embeddings(data_path):
     # 创建保存嵌入的目录
     os.makedirs(data_path, exist_ok=True)
 
+
     # 初始化 tokenizer 和 model（确保使用 PyTorch 权重）
     tokenizer = T5Tokenizer.from_pretrained(
         "/home/aita8180/data/mntdata/yinqy/PGAT-ABPp-main/train/Rostlab/prot_t5_xl_uniref50"

@@ -292,6 +292,7 @@ def cross_validation(all_dataframe, fold_number=5):
         valid_auprs.append(valid_aupr)
         fold += 1
 
+
     print("\n\nBest epoch: " + " ".join(best_epochs))
     print("Average AUC of {} fold: {:.4f}".format(fold_number, sum(valid_aucs) / fold_number))
     print("Average AUPR of {} fold: {:.4f}".format(fold_number, sum(valid_auprs) / fold_number))

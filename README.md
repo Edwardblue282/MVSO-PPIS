@@ -33,5 +33,6 @@
   You can run "train.py" to train the deep model from stratch and use the "test.py" to test the test datasets with the trained model.
 ## 7 Access for the paper of MVSO-PPIS
   Paper title: "MVSO-PPIS:A Structured Objective Learning Model for Protein-Protein Interaction Sites Prediction via Multi-View Graph Information Integration". <br>
+  Figshare link: https://doi.org/10.6084/m9.figshare.29580308.v1
   Paper link: https://doi.org/
   

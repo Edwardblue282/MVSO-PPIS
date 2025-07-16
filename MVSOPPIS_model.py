@@ -224,6 +224,7 @@ class AGATLayer(nn.Module):
         else:
             return {'z': edges.src['z'], 'e': edges.data['e']}
 
+
     def reduce_func(self, nodes):
         attn_w = F.softmax(nodes.mailbox['e'], dim=1)
         h = torch.sum(attn_w * nodes.mailbox['z'], dim=1)

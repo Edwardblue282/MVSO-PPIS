@@ -22,6 +22,7 @@ class GraphConvolution(nn.Module):
         else:
             self.in_features = in_features
 
+
         self.out_features = out_features
         self.residual = residual
         self.weight = Parameter(torch.FloatTensor(self.in_features,self.out_features))
