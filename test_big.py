@@ -2,13 +2,13 @@ import os
 import pandas as pd
 from torch.autograd import Variable
 from sklearn import metrics
-from AGATPPIS_model_bigmodel import *
+from MVSOPPIS_model_bigmodel import *
 from tqdm import tqdm
 
 
 # Path
-Dataset_Path = "/home/aita8180/data/mtl/AGAT-PPIS/Dataset/"
-Model_Path = "/home/aita8180/data/mtl/AGAT-PPIS_big/Log/test_bigmodel/model/"
+Dataset_Path = "./Dataset/"
+Model_Path = "./Log/test_bigmodel/model/"
 
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 
@@ -200,8 +200,8 @@ def analysis(y_true, y_pred, best_threshold = None):
 
 
 def test(test_dataframe, psepos_path):
-    embed_dirs = "/home/aita8180/data/mtl/AGAT-PPIS/Embeddingsss/"
-    feature_Path = "/home/aita8180/data/mtl/AGAT-PPIS/nFeature/"
+    embed_dirs = "./Embeddingsss/"
+    feature_Path = "./nFeature/"
     test_loader = DataLoader(dataset=ProDataset(dataframe=test_dataframe,psepos_path=psepos_path, embed_dir=embed_dirs, Feature_path=feature_Path), batch_size=BATCH_SIZE, shuffle=True, num_workers=2, collate_fn=graph_collate)
 
     # for model_name in sorted(os.listdir(Model_Path)):
@@ -209,7 +209,7 @@ def test(test_dataframe, psepos_path):
         # model_name = "Full_model54.pkl"
         model_name = "best_model.pkl"
         print(model_name)
-        model = AGATPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
+        model = MVSOPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
         if torch.cuda.is_available():
             model.cuda()
         model.load_state_dict(torch.load(Model_Path + model_name, map_location='cuda:0'))
@@ -252,7 +252,7 @@ def main():
     with open(Dataset_Path + "UBtest_31-6.pkl", "rb") as f:
         UBtest_31_6 = pickle.load(f)
 
-    with open("/home/aita8180/data/mtl/AGAT-PPIS/nFeature/PP-250_Test.pkl", "rb") as f:
+    with open("./nFeature/PP-250_Test.pkl", "rb") as f:
         Test_250 = pickle.load(f)
 
     Btest_31_6 = {}
@@ -262,11 +262,11 @@ def main():
         bound_ID, unbound_ID, _ = line.strip().split()
         Btest_31_6[bound_ID] = Test_60[bound_ID]
 
-    Test60_psepos_Path = '/home/aita8180/data/mtl/AGAT-PPIS/Feature/psepos/Test60_psepos_SC.pkl'
-    Test250_psepos_Path = '/home/aita8180/data/mtl/GeoNet-main/Datasets/customed_data/PP/PP_psepos_SC.pkl'
-    Test315_28_psepos_Path = '/home/aita8180/data/mtl/AGAT-PPIS/Feature/psepos/Test315-28_psepos_SC.pkl'
-    Btest31_psepos_Path = '/home/aita8180/data/mtl/AGAT-PPIS/Feature/psepos/Test60_psepos_SC.pkl'
-    UBtest31_28_psepos_Path = '/home/aita8180/data/mtl/AGAT-PPIS/Feature/psepos/UBtest31-6_psepos_SC.pkl'
+    Test60_psepos_Path = './Feature/psepos/Test60_psepos_SC.pkl'
+    Test250_psepos_Path = './Datasets/customed_data/PP/PP_psepos_SC.pkl'
+    Test315_28_psepos_Path = './Feature/psepos/Test315-28_psepos_SC.pkl'
+    Btest31_psepos_Path = './Feature/psepos/Test60_psepos_SC.pkl'
+    UBtest31_28_psepos_Path = './Feature/psepos/UBtest31-6_psepos_SC.pkl'
 
     # print("Evaluate GraphPPIS on Test_60")
     # test_one_dataset(Test_60, Test60_psepos_Path)

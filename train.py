@@ -10,7 +10,7 @@ from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
 
 
-from AGATPPIS_model import *
+from MVSOPPIS_model import *
 # import dgl
 
 
@@ -282,7 +282,7 @@ def cross_validation(all_dataframe, fold_number=5):
         print("Train on", str(train_dataframe.shape[0]), "samples, validate on", str(valid_dataframe.shape[0]),
               "samples")
 
-        model = AGATPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
+        model = MVSOPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
         if torch.cuda.is_available():
             model.cuda()
 
@@ -303,7 +303,7 @@ def train_full_model(all_dataframe, aver_epoch):
     best_auprc = 0
 
     print("\n\nTraining a full model using all training data...\n")
-    model = AGATPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
+    model = MVSOPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
     if torch.cuda.is_available():
         model.cuda()
 

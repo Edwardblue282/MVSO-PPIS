@@ -2,13 +2,13 @@ import os
 import pandas as pd
 from torch.autograd import Variable
 from sklearn import metrics
-from AGATPPIS_model import *
+from MVSOPPIS_model import *
 from tqdm import tqdm
 
 
 # Path
 Dataset_Path = "./Dataset/"
-Model_Path = "/home/aita8180/data/mtl/AGAT-PPIS/Log/test/model/"
+Model_Path = "./Log/test/model/"
 
 def make_edge(x):
     shape2 = (1, 1, x.shape[0])
@@ -203,7 +203,7 @@ def test(test_dataframe, psepos_path):
         
         model_name = "best_model.pkl"
         print(model_name)
-        model = AGATPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
+        model = MVSOPPIS(LAYER, INPUT_DIM, HIDDEN_DIM, NUM_CLASSES, DROPOUT, LAMBDA, ALPHA)
         if torch.cuda.is_available():
             model.cuda()
         model.load_state_dict(torch.load(Model_Path + model_name, map_location='cuda:0'))
